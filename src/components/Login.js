@@ -16,7 +16,9 @@ export default function Login() {
             <form class="row g-3 needs-validation" novalidate>
 
                 <div class="row">
-                    <div class="col-sm-5">
+                    <div class="col-sm-4">
+                    </div>
+                    <div class="col-sm-4">
                         <div class="form-group">
                             <label for="validationEmail4" class="form-label">Correo electrónico</label>
                             <input type="email" class="form-control" id="validarionCorreoElectronico" placeholder="ejemplo@gmail.com" required />
@@ -26,16 +28,22 @@ export default function Login() {
 
 
                 <div class="row">
-                    <div class="col-sm-5">
+                    <div class="col-sm-4">
+                    </div>
+                    <div class="col-sm-4">
                         <div class="form-group">
                             <label for="validationPassword4" class="form-label">Contraseña</label>
                             <input type="password" class="form-control" id="validationContrasena" placeholder="De 6 a 16 caracteres" required />
                         </div>
                     </div>
                 </div>
-
-                <div class="col-12">
+                <br/><br/><br/><br/>
+                <div class="row">
+                    <div class="col-sm-4">
+                    </div>
+                <div class="col-sm-4">
                     <button class="btn btn-primary" type="submit">Iniciar Sesión</button>
+                </div>
                 </div>
             </form>
 
