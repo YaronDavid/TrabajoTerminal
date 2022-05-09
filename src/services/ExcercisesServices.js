@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const API_URL="http://localhost:8080/api/v1/exercises"
+const API_URL="http://localhost:8080/api/v1/ejercicios"
 
 class ExercicesServices{
 
