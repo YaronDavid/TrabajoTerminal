@@ -1,0 +1,13 @@
+.btn-solve{
+    background-color: greenyellow;
+}
+
+#canvas{
+    width: 439px;
+    height: 441px;
+}
+canvas{
+    width: 439px;
+    height: 441px;
+    background-image: url("../../images/plano.jpg");
+}
