@@ -14,6 +14,7 @@ import OneExercise from './components/OneExercise';
 import SolveExercise from './components/SolveExercise';
 import Login from './components/Login';
 import Home from './components/Home';
+import Registro from './components/Registro';
 
 
 
@@ -33,6 +34,7 @@ function App() {
               <Route path='/solve-exercise/:id' element = {<SolveExercise/>}></Route>
               <Route path='/login' element = {<Login/>}></Route>
               <Route path='/home' element = {<Home/>}></Route>
+              <Route path='/registro' element = {<Registro/>}></Route>
             </Routes>
           </div>
         </div>
