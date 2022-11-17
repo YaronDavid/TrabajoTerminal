@@ -17,6 +17,7 @@ export default function Login() {
     const handleLogin = (e) =>{   
         userServices.login(credenciales.contrasena,credenciales.correo).then((res) => {
             sessionStorage.setItem('id',res.data.id_user);
+            console.log(res.data.id_user);
             window.location.href='/home'
         });
     }
@@ -60,7 +61,7 @@ export default function Login() {
                     <div className="col-sm-4">
                     </div>
                 <div className="col-sm-4">
-                    <button className="btn btn-primary" type="submit">Iniciar Sesión</button>
+                    <a className="btn btn-primary" onClick={handleLogin}>Iniciar Sesión</a>
                 </div>
                 </div>
             </form>

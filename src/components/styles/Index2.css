@@ -10,3 +10,8 @@
 	width: 20px;
 	margin: 10px 5px;
 }
+
+.btn-close-session{
+	background-color: blueviolet;
+	margin-left: 50vw;
+}
