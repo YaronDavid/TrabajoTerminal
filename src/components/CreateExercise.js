@@ -1,6 +1,5 @@
 import React, { Component } from 'react'
 import ExcercisesServices from '../services/ExcercisesServices';
-import { Route, useHistory as history } from 'react-router-dom'
 
 class CreateExercise extends Component {
     constructor(props){
