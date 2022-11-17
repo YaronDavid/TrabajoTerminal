@@ -12,6 +12,9 @@ import NavBar from './components/NavBar';
 import CreateExercise from './components/CreateExercise';
 import OneExercise from './components/OneExercise';
 import SolveExercise from './components/SolveExercise';
+import Login from './components/Login';
+import Home from './components/Home';
+
 
 
 function App() {
@@ -28,6 +31,8 @@ function App() {
               <Route path='/add-exercise' element = {<CreateExercise/>}></Route>
               <Route path='/update-exercise/:id' element = {<UpdateExercise/>}></Route>
               <Route path='/solve-exercise/:id' element = {<SolveExercise/>}></Route>
+              <Route path='/login' element = {<Login/>}></Route>
+              <Route path='/home' element = {<Home/>}></Route>
             </Routes>
           </div>
         </div>

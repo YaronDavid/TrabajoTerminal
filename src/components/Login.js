@@ -1,52 +1,69 @@
 import React from 'react';
-import NavBar from './NavBar';
-import './styles/Login.css'
+import './styles/Login.css';
+import { useState } from 'react';
+import userServices from '../services/UserServices';
+
 export default function Login() {
+    
+    const [credenciales, setCredenciales] = useState({
+        correo:'',
+        contrasena:'',
+    });
+
+    const handleChange = (event) =>{
+        setCredenciales({...credenciales, [event.target.name]: event.target.value});
+    }
+
+    const handleLogin = (e) =>{   
+        userServices.login(credenciales.contrasena,credenciales.correo).then((res) => {
+            sessionStorage.setItem('id',res.data.id_user);
+            window.location.href='/home'
+        });
+    }
+    
     return (
         <>
-            <NavBar /><br></br>
-            <div class="row">
-                <div class="col-sm-4">
+            <div className="row">
+                <div className="col-sm-4">
                 </div>
-                    <div class="col-sm-4">
+                    <div className="col-sm-4">
                         <h1 className='Title text-center btn-primary'>Iniciar Sesión</h1>
                     </div>
             </div>
             <br></br>
-            <form class="row g-3 needs-validation" novalidate>
+            <form className="row g-3 needs-validation" onSubmit={handleLogin}>
 
-                <div class="row">
-                    <div class="col-sm-4">
+                <div className="row">
+                    <div className="col-sm-4">
                     </div>
-                    <div class="col-sm-4">
-                        <div class="form-group">
-                            <label for="validationEmail4" class="form-label">Correo electrónico</label>
-                            <input type="email" class="form-control" id="validarionCorreoElectronico" placeholder="ejemplo@gmail.com" required />
+                    <div className="col-sm-4">
+                        <div className="form-group">
+                            <label className="form-label">Correo electrónico</label>
+                            <input type="email" className="form-control" id="correo" name="correo" placeholder="ejemplo@gmail.com" onChange={handleChange} required />
                         </div>
                     </div>
                 </div>
 
 
-                <div class="row">
-                    <div class="col-sm-4">
+                <div className="row">
+                    <div className="col-sm-4">
                     </div>
-                    <div class="col-sm-4">
-                        <div class="form-group">
-                            <label for="validationPassword4" class="form-label">Contraseña</label>
-                            <input type="password" class="form-control" id="validationContrasena" placeholder="De 6 a 16 caracteres" required />
+                    <div className="col-sm-4">
+                        <div className="form-group">
+                            <label className="form-label">Contraseña</label>
+                            <input type="password" className="form-control" id="contrasena" name="contrasena" placeholder="De 6 a 16 caracteres" onChange={handleChange} required />
                         </div>
                     </div>
                 </div>
                 <br/><br/><br/><br/>
-                <div class="row">
-                    <div class="col-sm-4">
+                <div className="row">
+                    <div className="col-sm-4">
                     </div>
-                <div class="col-sm-4">
-                    <button class="btn btn-primary" type="submit">Iniciar Sesión</button>
+                <div className="col-sm-4">
+                    <button className="btn btn-primary" type="submit">Iniciar Sesión</button>
                 </div>
                 </div>
             </form>
-
         </>
     );
 }
