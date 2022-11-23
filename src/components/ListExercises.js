@@ -43,7 +43,7 @@ class ListExercises extends Component {
         <h2 className='text-center'>Lista de ejercicios</h2>
         <div className='row'>
           <div className='col'>
-            <a href='/add-exercise' className='btn btn-primary'>Nuevo ejercicio</a>
+            {sessionStorage.getItem("tipo")==1?<a href='/add-exercise' className='btn btn-primary'>Nuevo ejercicio</a>:<></>}
           </div>
           <br/>
           <div className='col'> </div>
@@ -52,17 +52,17 @@ class ListExercises extends Component {
         <div className='row'>
           <div className='col oculto'> .</div>
         </div>
-        <div className='row'>
+        <div className='row container text-center'>
           <table className='table table-striped table-bordered'>
             <thead>
               <tr>
-                <th>id_ejercicio</th>
+                {sessionStorage.getItem("tipo")==1?<th>id_ejercicio</th>:<></>}
                 <th>ecuación 1</th>
                 <th>ecuación 2</th>
-                <th>AnswerX</th>
-                <th>AnswerY</th>
-                <th>Actualizar</th>
-                <th>Borrar</th>
+                {sessionStorage.getItem("tipo")==1?<th>AnswerX</th>:<></>}
+                {sessionStorage.getItem("tipo")==1?<th>AnswerY</th>:<></>}
+                {sessionStorage.getItem("tipo")==1?<th>Actualizar</th>:<></>}
+                {sessionStorage.getItem("tipo")==1?<th>Borrar</th>:<></>}
               </tr>
             </thead>
             <tbody>
@@ -70,14 +70,14 @@ class ListExercises extends Component {
                 this.state.ejercicios.map(
                   ejercicio =>
                     <tr key={ejercicio.id_ejercicio}>
-                      <td><a href={'/exercise/'+ejercicio.id_ejercicio} className='btn btn-warning'>{ejercicio.id_ejercicio}</a></td>
+                      {sessionStorage.getItem("tipo")==1?<td><a href={'/exercise/'+ejercicio.id_ejercicio} className='btn btn-warning'>{ejercicio.id_ejercicio}</a></td>:<></>}
                       <td>{ejercicio.x1+"X "+ejercicio.sign1+" "+ejercicio.y1+"Y = "+ejercicio.const1}</td>
                       <td>{ejercicio.x2+"X "+ejercicio.sign2+" "+ejercicio.y2+"Y = "+ejercicio.const2}</td>
-                      <td>{ejercicio.answerX}</td>
-                      <td>{ejercicio.answerY}</td>
-                      <td><a href={'/update-exercise/'+ejercicio.id_ejercicio} className='btn btn-info'>Actualizar</a></td>
-                      <td><button onClick={() => this.deleteExercise(ejercicio.id_ejercicio)} className='btn btn-danger'>Borrar</button></td>
-                      <td><button onClick={() => this.solveExercise(ejercicio.id_ejercicio)} className='btn btn-solve'>Resolver</button></td>
+                      {sessionStorage.getItem("tipo")==1?<td>{ejercicio.answerX}</td>:<></>}
+                      {sessionStorage.getItem("tipo")==1?<td>{ejercicio.answerY}</td>:<></>}
+                      {sessionStorage.getItem("tipo")==1?<td><a href={'/update-exercise/'+ejercicio.id_ejercicio} className='btn btn-info'>Actualizar</a></td>:<></>}
+                      {sessionStorage.getItem("tipo")==1?<td><button onClick={() => this.deleteExercise(ejercicio.id_ejercicio)} className='btn btn-danger'>Borrar</button></td>:<></>}
+                      {sessionStorage.getItem("tipo")==0?<td><button onClick={() => this.solveExercise(ejercicio.id_ejercicio)} className='btn btn-solve'>Resolver</button></td>:<></>}
                     </tr>
                 )
               }
