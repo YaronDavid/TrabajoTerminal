@@ -23,48 +23,52 @@ export default function Login() {
     }
     
     return (
-        <>
-            <div className="row">
-                <div className="col-sm-4">
+        <><br/>
+            <div className="container">
+                <div className='card col-md-6 offset-md-3 offset-md-3'>
+                    <h1 className='Title text-center btn-primary'>Iniciar Sesión</h1>
+                <div className='card-body'>
+                    <form className="row g-3 needs-validation" onSubmit={handleLogin}>
+                        <div className="row">
+                            <div className="col-sm-2">
+                            </div>
+                            <div className="col-sm-8">
+                                <div className="form-group">
+                                    <label className="form-label">Correo electrónico</label>
+                                    <input type="email" className="form-control" id="correo" name="correo" placeholder="ejemplo@gmail.com" onChange={handleChange} required />
+                                </div>
+                            </div>
+                            <div className="col-sm-2">
+                            </div>
+                        </div>
+
+                        <div className="row">
+                            <div className="col-sm-2">
+                            </div>
+                            <div className="col-sm-8">
+                                <div className="form-group">
+                                    <label className="form-label">Contraseña</label>
+                                    <input type="password" className="form-control" id="contrasena" name="contrasena" placeholder="De 6 a 16 caracteres" onChange={handleChange} required />
+                                </div>
+                            </div>
+                            <div className="col-sm-2">
+                            </div>
+                        </div>
+                        <div className="row">
+                            <div className="col-sm-2">
+                            </div>
+                            <br/><br/>
+                            <div className="col-sm-4">
+                                <a className="btn btn-primary" onClick={handleLogin}>Iniciar Sesión</a>
+                            </div>
+                            <div className="col-sm-4">
+                                <a href='/restablecer'>Olvide mi contraseña</a>
+                            </div>
+                        </div>
+                    </form>
                 </div>
-                    <div className="col-sm-4">
-                        <h1 className='Title text-center btn-primary'>Iniciar Sesión</h1>
-                    </div>
+                </div>
             </div>
-            <br></br>
-            <form className="row g-3 needs-validation" onSubmit={handleLogin}>
-
-                <div className="row">
-                    <div className="col-sm-4">
-                    </div>
-                    <div className="col-sm-4">
-                        <div className="form-group">
-                            <label className="form-label">Correo electrónico</label>
-                            <input type="email" className="form-control" id="correo" name="correo" placeholder="ejemplo@gmail.com" onChange={handleChange} required />
-                        </div>
-                    </div>
-                </div>
-
-
-                <div className="row">
-                    <div className="col-sm-4">
-                    </div>
-                    <div className="col-sm-4">
-                        <div className="form-group">
-                            <label className="form-label">Contraseña</label>
-                            <input type="password" className="form-control" id="contrasena" name="contrasena" placeholder="De 6 a 16 caracteres" onChange={handleChange} required />
-                        </div>
-                    </div>
-                </div>
-                <br/><br/><br/><br/>
-                <div className="row">
-                    <div className="col-sm-4">
-                    </div>
-                <div className="col-sm-4">
-                    <a className="btn btn-primary" onClick={handleLogin}>Iniciar Sesión</a>
-                </div>
-                </div>
-            </form>
         </>
     );
 }
