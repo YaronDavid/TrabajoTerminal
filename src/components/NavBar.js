@@ -9,8 +9,7 @@ import UserServices from '../services/UserServices';
 
 export default function NavBar() {
 
-  let log='';
-  let cerrar='';
+  let sesion='';
   let grupos='';
 
   const[id,setId] = useState(null);
@@ -21,11 +20,11 @@ export default function NavBar() {
     if(id){
     UserServices.getUserById(id).then((res)=>{
       setTipo(res.data.tipo_usuario);
+      sessionStorage.setItem("tipo",tipo);
     }
   
     );
   }
-    console.log(tipo);
   });
 
   const closeSesion = () =>{
@@ -34,47 +33,37 @@ export default function NavBar() {
   
 
   if(!id){
-    log = <>
-            <li className="nav-item">
-              <a className="nav-link active" aria-current="page" href="registro">Registrarse</a>
-            </li>
-            <li className="nav-item">
-              <a className="nav-link active" aria-current="page" href="/login">Iniciar sesion</a>
-            </li>
-          </>
-    cerrar = <></>
-    grupos = <></>
+    sesion = <form className='d-flex'>
+    <a href='./login' className='btn btn-outline-success'>Iniciar Sesion</a>
+    <a href='./registro' className='btn btn-outline-success'>Registrarse</a>
+    </form>
+
+    grupos=<></>
   }else{
-    log = <></>
-    grupos =  <li className="nav-item">
-                <a className="nav-link active btn btn-close-session" aria-current="page" href="/myGroups">Mis grupos</a>
-              </li>
-    cerrar =  <li className="nav-item">
-                <a className="btn btn-close-session" aria-current="page" href="/" onClick={closeSesion}>Cerrar sesion</a>
+    grupos =  <>
+                <li className="nav-item">
+                  <a className="nav-link active" aria-current="page" href="/myGroups">Mis grupos</a>
+                </li>
+            </>
+    sesion =  <li className="d-flex">
+                <a className="btn btn-outline-warning" aria-current="page" href="/" onClick={closeSesion}>Cerrar sesion</a>
               </li>
   }
 
-  if(tipo==0){
-
-  }
   return (
     
     <>
-      <nav className="navbar navbar-expand-lg navbar-dark bg-dark justify-content-between">
-      
-        <div className="container">
-          <div className="container-fluid">
-
-              <img className="logotipo" src={Logotipo} alt="" />
-
-            <div className="collapse navbar-collapse" id="navbarSupportedContent">
-              <ul className="navbar-nav me-auto mb-2 mb-lg-0">
+      <nav className="navbar navbar-expand-lg navbar-dark bg-dark">
+        <div className='container-fluid'>
+          <img className="logotipo" src={Logotipo} alt="" />
+          <div className="collapse navbar-collapse" id="navbarSupportedContent">
+              <ul className="navbar-nav me-auto mb-2 mb-lg-0 navbar-nav-scroll">
 
                 <li className="nav-item">
                   <a className="nav-link active" aria-current="page" href="/">Inicio</a>
                 </li>
-                
-                {log}
+
+                {grupos}
 
                 <li>
                   <a className="nav-link active" aria-current="page">Contacto</a>
@@ -84,12 +73,10 @@ export default function NavBar() {
                   <a href="#"><img className="iconos-redes-header" src={tw} alt="Twitter" /></a>
                   <a href="#"><img className="iconos-redes-header" src={insta} alt="Instagram" /></a>
                 </li>
-                {cerrar}
               </ul>
-
+              {sesion}
             </div>
-          </div>
-        </div>
+            </div>
       </nav>
     </>
   );

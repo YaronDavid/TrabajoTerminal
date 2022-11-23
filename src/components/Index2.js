@@ -9,7 +9,6 @@ export default function Index2() {
         <>
             <Carrusel />
             <Banner />
-            <a className="btn btn-primary" href="./Login.js">Login</a>
         </>
     );
 }
