@@ -7,9 +7,13 @@ class UserServices{
     login(contrasena,correo){
         return axios.get(API_URL+'user/'+contrasena+'/'+correo);
     }
-    //aqui lo mando a llamar en react
+    
     getUserById(id){
         return axios.get(API_URL+'users/'+id);
+    }
+
+    getGroups(id){
+        return axios.get(API_URL+'user/grupos/'+id)
     }
 }
 
