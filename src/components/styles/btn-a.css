@@ -1,0 +1,10 @@
+.btn-a{
+    display: inline-block;
+    background-color: #373739;
+    color: white;
+    text-align: center;
+}
+
+.btn-a:hover{
+    background-color: #19191a;
+}

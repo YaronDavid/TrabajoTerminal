@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import ExcercisesServices from '../services/ExcercisesServices'
 import './styles/invisible.css'
 import './styles/solve.css'
+import './styles/Index2.css'
 
 
 class ListExercises extends Component {
@@ -9,7 +10,8 @@ class ListExercises extends Component {
     super(props)
 
     this.state = {
-      ejercicios: []
+      ejercicios: [],
+      tipo:''
     }
 
     this.deleteExercise = this.deleteExercise.bind(this);
@@ -19,9 +21,12 @@ class ListExercises extends Component {
 
 
   componentDidMount() {
-    ExcercisesServices.getExercises().then((res) => {
+    console.log(sessionStorage.getItem("idGrupo"));
+    let id_grupo = sessionStorage.getItem("idGrupo")
+    ExcercisesServices.getExerciseByGroup(id_grupo).then((res) => {
       this.setState({ ejercicios: res.data })
     });
+    this.setState({tipo: sessionStorage.getItem("tipo")})
   }
 
   deleteExercise(id){
@@ -32,18 +37,19 @@ class ListExercises extends Component {
   }
 
   solveExercise(id){
-    sessionStorage.setItem("id", id);
+    sessionStorage.setItem("idE", id);
     window.location.href="/solve-exercise/"+id;
   }
 
 
   render() {
     return (
-      <div>
+      <div className='body' id="createE">
+        <div className='container'>
         <h2 className='text-center'>Lista de ejercicios</h2>
         <div className='row'>
           <div className='col'>
-            {sessionStorage.getItem("tipo")==1?<a href='/add-exercise' className='btn btn-primary'>Nuevo ejercicio</a>:<></>}
+            {this.state.tipo==1?<a href='/add-exercise' className='btn btn-primary'>Nuevo ejercicio</a>:<></>}
           </div>
           <br/>
           <div className='col'> </div>
@@ -53,16 +59,16 @@ class ListExercises extends Component {
           <div className='col oculto'> .</div>
         </div>
         <div className='row container text-center'>
-          <table className='table table-striped table-bordered'>
+          <table className='table table-striped table-or'>
             <thead>
               <tr>
-                {sessionStorage.getItem("tipo")==1?<th>id_ejercicio</th>:<></>}
+                {this.state.tipo==1?<th>id_ejercicio</th>:<></>}
                 <th>ecuación 1</th>
                 <th>ecuación 2</th>
-                {sessionStorage.getItem("tipo")==1?<th>AnswerX</th>:<></>}
-                {sessionStorage.getItem("tipo")==1?<th>AnswerY</th>:<></>}
-                {sessionStorage.getItem("tipo")==1?<th>Actualizar</th>:<></>}
-                {sessionStorage.getItem("tipo")==1?<th>Borrar</th>:<></>}
+                {this.state.tipo==1?<th>AnswerX</th>:<th>Resolver</th>}
+                {this.state.tipo==1?<th>AnswerY</th>:<></>}
+                {this.state.tipo==1?<th>Actualizar</th>:<></>}
+                {this.state.tipo==1?<th>Borrar</th>:<></>}
               </tr>
             </thead>
             <tbody>
@@ -70,19 +76,20 @@ class ListExercises extends Component {
                 this.state.ejercicios.map(
                   ejercicio =>
                     <tr key={ejercicio.id_ejercicio}>
-                      {sessionStorage.getItem("tipo")==1?<td><a href={'/exercise/'+ejercicio.id_ejercicio} className='btn btn-warning'>{ejercicio.id_ejercicio}</a></td>:<></>}
+                      {this.state.tipo==1?<td><a href={'/exercise/'+ejercicio.id_ejercicio} className='btn btn-warning'>{ejercicio.id_ejercicio}</a></td>:<></>}
                       <td>{ejercicio.x1+"X "+ejercicio.sign1+" "+ejercicio.y1+"Y = "+ejercicio.const1}</td>
                       <td>{ejercicio.x2+"X "+ejercicio.sign2+" "+ejercicio.y2+"Y = "+ejercicio.const2}</td>
-                      {sessionStorage.getItem("tipo")==1?<td>{ejercicio.answerX}</td>:<></>}
-                      {sessionStorage.getItem("tipo")==1?<td>{ejercicio.answerY}</td>:<></>}
-                      {sessionStorage.getItem("tipo")==1?<td><a href={'/update-exercise/'+ejercicio.id_ejercicio} className='btn btn-info'>Actualizar</a></td>:<></>}
-                      {sessionStorage.getItem("tipo")==1?<td><button onClick={() => this.deleteExercise(ejercicio.id_ejercicio)} className='btn btn-danger'>Borrar</button></td>:<></>}
-                      {sessionStorage.getItem("tipo")==0?<td><button onClick={() => this.solveExercise(ejercicio.id_ejercicio)} className='btn btn-solve'>Resolver</button></td>:<></>}
+                      {this.state.tipo==1?<td>{ejercicio.answerX}</td>:<></>}
+                      {this.state.tipo==1?<td>{ejercicio.answerY}</td>:<></>}
+                      {this.state.tipo==1?<td><a href={'/update-exercise/'+ejercicio.id_ejercicio} className='btn btn-info'>Actualizar</a></td>:<></>}
+                      {this.state.tipo==1?<td><button onClick={() => this.deleteExercise(ejercicio.id_ejercicio)} className='btn btn-danger'>Borrar</button></td>:<></>}
+                      {this.state.tipo==0?<td><button onClick={() => this.solveExercise(ejercicio.id_ejercicio)} className='btn btn-solve'>Resolver</button></td>:<></>}
                     </tr>
                 )
               }
             </tbody>
           </table>
+        </div>
         </div>
       </div>
     )

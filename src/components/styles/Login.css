@@ -1,7 +1,14 @@
+.card{
+    margin: auto;
+    width: 30em;
+}
 .Title{
-    align-items: center;
-    font-size: 3em;
-    font-style: normal;
-    font-family: Verdana, Geneva, Tahoma, sans-serif;   
-    color: white
+    background-color: #F45b2f
+}
+.body{
+    background-color: #B9DEA1;
+    height: 88vh;
+}
+.last{
+    padding-bottom: 10px;
 }

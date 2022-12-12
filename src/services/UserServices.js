@@ -15,6 +15,10 @@ class UserServices{
     getGroups(id){
         return axios.get(API_URL+'user/grupos/'+id)
     }
+    createUser(user){
+        console.log(user);
+        return axios.post(API_URL+"users", user);
+    }
 }
 
 export default new UserServices();

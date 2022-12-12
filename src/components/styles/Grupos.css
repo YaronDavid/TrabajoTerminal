@@ -1,3 +1,20 @@
 .c{
     width: 18rem;
 }
+.body{
+    height: 90vh;
+}
+hr.linea{
+    color: #F45b2f;
+    height: 5px;
+    border: 0 none;
+    background-color: #F45b2f;
+    width: 90%;
+    margin: auto;
+}
+.welcome{
+    text-align: center;
+}
+.flex{
+    display: flex;
+}

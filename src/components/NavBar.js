@@ -15,15 +15,15 @@ export default function NavBar() {
   const[id,setId] = useState(null);
   const[tipo,setTipo] = useState(null);
 
+
   useEffect(()=>{
     setId(sessionStorage.getItem('id'));
     if(id){
     UserServices.getUserById(id).then((res)=>{
       setTipo(res.data.tipo_usuario);
       sessionStorage.setItem("tipo",tipo);
-    }
-  
-    );
+    });
+    
   }
   });
 
@@ -34,8 +34,8 @@ export default function NavBar() {
 
   if(!id){
     sesion = <form className='d-flex'>
-    <a href='./login' className='btn btn-outline-success'>Iniciar Sesion</a>
-    <a href='./registro' className='btn btn-outline-success'>Registrarse</a>
+    <a href='./login' className='btn ini'>Iniciar Sesion</a>
+    <a href='./registro' className='btn'>Registrarse</a>
     </form>
 
     grupos=<></>
@@ -46,14 +46,14 @@ export default function NavBar() {
                 </li>
             </>
     sesion =  <li className="d-flex">
-                <a className="btn btn-outline-warning" aria-current="page" href="/" onClick={closeSesion}>Cerrar sesion</a>
+                <a className="btn" aria-current="page" href="/" onClick={closeSesion}>Cerrar sesion</a>
               </li>
   }
 
   return (
     
     <>
-      <nav className="navbar navbar-expand-lg navbar-dark bg-dark">
+      <nav className="navbar navbar-expand-lg" id="nav">
         <div className='container-fluid'>
           <img className="logotipo" src={Logotipo} alt="" />
           <div className="collapse navbar-collapse" id="navbarSupportedContent">

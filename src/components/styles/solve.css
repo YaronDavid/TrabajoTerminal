@@ -1,13 +1,36 @@
-.btn-solve{
-    background-color: greenyellow;
-}
 
 #canvas{
     width: 439px;
     height: 441px;
+    margin: auto;
 }
 canvas{
     width: 439px;
     height: 441px;
     background-image: url("../../images/plano.jpg");
+    margin: auto;
+    margin-top: 13vh;
+}
+
+.table-or{
+    background-color: rgba(244,91,47,70%);
+}
+.row{
+    padding-bottom: 20px;
+}
+#body{
+    height: 140vh;
+}
+div.btn-orange{
+    background-color: rgba(244,91,47);
+}
+.XdL{
+    margin-left: 4vh;
+}
+.XdS{
+    margin-left: 15vh;
+}
+.redu{
+    max-width: 34vw;
+    min-width: 34vw;
 }

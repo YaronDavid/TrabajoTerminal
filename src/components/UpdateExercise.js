@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import ExcercisesServices from '../services/ExcercisesServices';
+import "./styles/Update.css"
 
 class UpdateExercise extends Component {
   constructor(props) {
@@ -98,7 +99,7 @@ class UpdateExercise extends Component {
 
   render() {
     return (
-      <>
+      <div className='body'>
         <br />
         <div className='container'>
           <div className='row'>
@@ -164,7 +165,7 @@ class UpdateExercise extends Component {
             </div>
           </div>
         </div>
-      </>
+      </div>
     )
   }
 }

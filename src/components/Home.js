@@ -31,7 +31,6 @@ export default class Home extends Component {
   render() {
     return (
         <>
-        <h2>Bienvenido {this.state.nombre} {this.state.apPat} {this.state.apMat}</h2>
         <Index2/>
       </>
     )

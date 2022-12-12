@@ -16,17 +16,21 @@ export default function Login() {
 
     const handleLogin = (e) =>{   
         userServices.login(credenciales.contrasena,credenciales.correo).then((res) => {
-            sessionStorage.setItem('id',res.data.id_user);
-            console.log(res.data.id_user);
-            window.location.href='/home'
+            if(typeof res.data == 'string'){
+                alert("Correo o contraseña incorrectos");
+            }else{
+                sessionStorage.setItem('id',res.data.id_user);
+                console.log(res.data.id_user);
+                window.location.href='/myGroups'
+            }
         });
     }
     
     return (
-        <><br/>
+        <div className='body' id="createE"><br/>
             <div className="container">
                 <div className='card col-md-6 offset-md-3 offset-md-3'>
-                    <h1 className='Title text-center btn-primary'>Iniciar Sesión</h1>
+                    <h1 className='Title text-center'>Iniciar Sesión</h1>
                 <div className='card-body'>
                     <form className="row g-3 needs-validation" onSubmit={handleLogin}>
                         <div className="row">
@@ -42,7 +46,7 @@ export default function Login() {
                             </div>
                         </div>
 
-                        <div className="row">
+                        <div className="row last">
                             <div className="col-sm-2">
                             </div>
                             <div className="col-sm-8">
@@ -59,7 +63,7 @@ export default function Login() {
                             </div>
                             <br/><br/>
                             <div className="col-sm-4">
-                                <a className="btn btn-primary" onClick={handleLogin}>Iniciar Sesión</a>
+                                <a className="btn" onClick={handleLogin}>Iniciar Sesión</a>
                             </div>
                             <div className="col-sm-4">
                                 <a href='/restablecer'>Olvide mi contraseña</a>
@@ -69,6 +73,6 @@ export default function Login() {
                 </div>
                 </div>
             </div>
-        </>
+        </div>
     );
 }

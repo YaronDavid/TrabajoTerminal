@@ -15,7 +15,7 @@ const Footer=()=>{
 						</ul>
 
 						<ul className="col-12 col-md-4 list-unstyled">
-							<li className="text-center mb-2" class='d-flex justify-content-between'>Síguenos
+							<li className="text-center mb-2 d-flex justify-content-between">Síguenos
 								<i className="bi bi-facebook"/>
 								<i className="bi bi-twitter"/>
 								<i className="bi bi-instagram"/>

@@ -1,0 +1,35 @@
+.moda.is-open{
+    display: flex;
+}
+
+.moda{
+    position: fixed;
+    z-index: 999;
+    top: 0;
+    left: 0;
+    width: 100%;
+    min-height: 100vh;
+    background-color: rgba(0,0,0,0.75);
+    display: none;
+    justify-content: center;
+    align-items: center;
+}
+.modal-container{
+    background-color: #F45b2f;
+    position: relative;
+    min-width: 350px;
+    min-height: 200px;
+    padding: 20px;
+
+}
+
+.modal-close{
+    position: absolute;
+    top: 147px;
+    left: 100px;
+    
+}
+
+.orange{
+    background-color: #F45b2f;
+}

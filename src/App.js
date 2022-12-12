@@ -15,12 +15,16 @@ import Footer from './components/Footer';
 import Grupo from './components/Grupo';
 import Temas from './components/Temas';
 import Sistemas from './components/Sistemas';
-import MyGroups from './components/MyGroups'
+import MyGroups from './components/MyGroups';
 import {
   BrowserRouter as Router,
   Routes,
   Route
 } from "react-router-dom";
+import Metodo from './components/Metodo';
+import Pasos from './components/Pasos';
+import NewGroup from './components/NewGroup';
+import CambiarContraseña from './components/CambiarContraseña';
 
 
 
@@ -29,8 +33,8 @@ function App() {
   return (
     <div>
       <Router>
-          <NavBar/>
-          <Routes>
+          <NavBar/>            
+            <Routes>
               <Route path='/' exact element = {<Index2/>}></Route>
               <Route path='/exercises' element = {<ListExercises/>}></Route>
               <Route path='/exercise/:id' element = {<OneExercise/>}></Route>
@@ -43,9 +47,13 @@ function App() {
               <Route path='/grupo' element = {<Grupo/>}></Route>
               <Route path='/temas' element = {<Temas/>}></Route>
               <Route path='/sistemas' element = {<Sistemas/>}></Route>
+              <Route path='/metodo' element = {<Metodo/>}></Route>
               <Route path='/myGroups' element = {<MyGroups/>}></Route>
+              <Route path='/pasos' element = {<Pasos/>}></Route>
+              <Route path='/crearGrupo' element = {<NewGroup/>}></Route>
+              <Route path='/restablecer' element = {<CambiarContraseña/>}></Route>
             </Routes>
-          
+          <Footer/>
       </Router>
     </div>
   );
