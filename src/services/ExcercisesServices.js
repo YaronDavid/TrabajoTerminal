@@ -15,8 +15,8 @@ class ExercicesServices{
         return axios.get(API_URL+'/'+id)
     }
 
-    updateExercise(exercise, id){
-        return axios.put(API_URL + "/" + id, exercise);
+    async updateExercise(exercise, id){
+        return await axios.put(API_URL + "/" + id, exercise);
     }
 
     deleteExercise(id){
@@ -29,10 +29,12 @@ class ExercicesServices{
         return axios.get(API_URL+"/max");
     }
     addExerciseToGroup(id_ejercicio,id_grupo){
-        id_ejercicio = id_ejercicio+1;
         let ejercicio_grupos={id_ejercicio,id_grupo}
         console.log(id_ejercicio+"..."+id_grupo)
         return axios.post(API_URL+"/grupos",ejercicio_grupos);
+    }
+    deleteExerciseToGroup(id_ejercicio,id_grupo){
+        return axios.delete(API_URL+"/grupos/"+id_ejercicio+"/"+id_grupo);
     }
 }
 

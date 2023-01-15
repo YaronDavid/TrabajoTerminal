@@ -14,12 +14,12 @@ class GroupServices{
         let user_grupo = {id_grupo, id_user}
         return axios.post(API_URL+"user/grupo",user_grupo);
     }
-    getMax(){
-        return axios.get(API_URL+"grupo/max");
+    async getMax(){
+        return await axios.get(API_URL+"grupo/max");
     }
-    crear(grupo){
+    async crear(grupo){
         console.log(grupo)
-        return axios.post(API_URL+"grupo",grupo)
+        return await axios.post(API_URL+"grupo",grupo)
     }
     salir(id_grupo,id_user){
         return axios.delete(API_URL+"user/grupo/"+id_user+"/"+id_grupo);
