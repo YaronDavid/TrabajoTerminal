@@ -11,6 +11,7 @@ export default function NavBar() {
 
   let sesion='';
   let grupos='';
+  let tutoriales=<></>
 
   const[id,setId] = useState(null);
   const[tipo,setTipo] = useState(null);
@@ -34,11 +35,12 @@ export default function NavBar() {
 
   if(!id){
     sesion = <form className='d-flex'>
-    <a href='./login' className='btn ini'>Iniciar Sesion</a>
+    <a href='./login' className='btn'>Iniciar Sesión</a>
     <a href='./registro' className='btn'>Registrarse</a>
     </form>
 
     grupos=<></>
+    tutoriales = <a className="nav-link active" aria-current="page" href="/tutoriales">Tutoriales</a>
   }else{
     grupos =  <>
                 <li className="nav-item">
@@ -46,7 +48,7 @@ export default function NavBar() {
                 </li>
             </>
     sesion =  <li className="d-flex">
-                <a className="btn" aria-current="page" href="/" onClick={closeSesion}>Cerrar sesion</a>
+                <a className="btn" aria-current="page" href="/" onClick={closeSesion}>Cerrar sesión</a>
               </li>
   }
 
@@ -64,14 +66,15 @@ export default function NavBar() {
                 </li>
 
                 {grupos}
+                {tutoriales}
 
                 <li>
-                  <a className="nav-link active" aria-current="page">Contacto</a>
+                  <a className="nav-link active" aria-current="page">Redes sociales:</a>
                 </li>
                 <li>
-                  <a href="#"><img className="iconos-redes-header" src={fb} alt="Facebook" /></a>
-                  <a href="#"><img className="iconos-redes-header" src={tw} alt="Twitter" /></a>
-                  <a href="#"><img className="iconos-redes-header" src={insta} alt="Instagram" /></a>
+                  <a href="https://www.facebook.com/profile.php?id=100088834684603"><img className="iconos-redes-header" src={fb} alt="Facebook" /></a>
+                  <a href="https://twitter.com/Simulador_B058"><img className="iconos-redes-header" src={tw} alt="Twitter" /></a>
+                  <a href="https://www.instagram.com/simulador2021.b058/"><img className="iconos-redes-header" src={insta} alt="Instagram" /></a>
                 </li>
               </ul>
               {sesion}
