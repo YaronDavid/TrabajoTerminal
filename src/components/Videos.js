@@ -31,6 +31,7 @@ export default class Videos extends Component {
             <div className='col-md-4'>
             <div className='card'>
                 <img className='card-img-top' src="https://2.bp.blogspot.com/-EDmYRkiQirA/WuM7mx5vH9I/AAAAAAAAGO8/aU1HdnB3L0AtbOamMW8Lb9s_K_j6y5_wQCLcBGAs/s1600/Paginas%2Bde%2Btutoriales.jpg"/>
+                <p className='referencia'>[1]</p>
                 <div className='card-body'>
                     <h5 className='card-title'>Videos tutroriales</h5>
                     <p>En este apartado encontrarás videos sobre el uso del sistema</p>
@@ -42,6 +43,7 @@ export default class Videos extends Component {
             <div className='col-md-4'>
             <div className='card'>
                 <img className='card-img-top' src="https://i0.wp.com/enmihomestudio.com/wp-content/uploads/2019/12/video_tutorials.png?resize=787.5%2C478&ssl=1"/>
+                <p className='referencia'>[2]</p>
                 <div className='card-body'>
                     <h5 className='card-title'>Videos del profesor</h5>
                     {this.state.msg}
@@ -49,6 +51,10 @@ export default class Videos extends Component {
                 </div>
                 </div>
             </div>
+        </div>
+        <div className='row'>
+            <p className='referencia'>1.- H.C. William, Full aprendizaje, [online] recuperado de: https://www.fullaprendizaje.com/2018/04/Las-seis-mejores-paginas-web-de-tutoriales..html</p>
+            <p className='referencia'>2.- En mi home estudio, [online] recuperado de: https://enmihomestudio.com/como-hacer-video-tutoriales-para-youtube-en-pc-guia-paso-a-paso/</p>
         </div>
       </div>
     )
