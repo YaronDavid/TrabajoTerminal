@@ -35,7 +35,7 @@
 }
 .btn{
 	color: black;
-	background-color: #4157b5
+	background-color: rgba(65,87,181,70%)
 }
 .flex{
 	display: flex;
@@ -129,4 +129,12 @@ h5.card-title{
 }
 #create1{
 	height: 90vh;
+}
+#actBorr{
+	width: 400px;
+	height: 150px;
+}
+#video{
+	width: 700px;
+	height: 400px;
 }

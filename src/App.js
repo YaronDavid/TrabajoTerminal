@@ -25,6 +25,11 @@ import Metodo from './components/Metodo';
 import Pasos from './components/Pasos';
 import NewGroup from './components/NewGroup';
 import CambiarContraseña from './components/CambiarContraseña';
+import Videos from './components/Videos';
+import Tutoriales from './components/Tutoriales'
+import Reproductor from './components/Reproductor';
+import VideosProfesor from './components/VideosProfesor';
+import NuevoVideo from './components/NuevoVideo';
 
 
 
@@ -52,6 +57,11 @@ function App() {
               <Route path='/pasos' element = {<Pasos/>}></Route>
               <Route path='/crearGrupo' element = {<NewGroup/>}></Route>
               <Route path='/restablecer' element = {<CambiarContraseña/>}></Route>
+              <Route path='/videos' element = {<Videos/>}></Route>
+              <Route path='/tutoriales' element = {<Tutoriales/>}></Route>
+              <Route path='/reproductor' element = {<Reproductor/>}></Route>
+              <Route path='/videosProfesor' element = {<VideosProfesor/>}></Route>
+              <Route path='/nuevoVideo' element = {<NuevoVideo/>}></Route>
             </Routes>
           <Footer/>
       </Router>
