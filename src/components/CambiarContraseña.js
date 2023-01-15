@@ -17,17 +17,17 @@ export default class CambiarContraseña extends Component {
             <br/>
             <div className='card'>
         <form>
-        <h2 className='Title text-center'>Recuperar contraseña</h2>
+        <h2 className='Title text-center'>Cambiar contraseña</h2>
             <div className='row'>
                 <div className='col-md-2'></div>
                 <div className='col-md-8'>
                     <div className='form-group'>
-                    <label>Correo</label>
+                    <label>Correo electrónico</label>
                     <input type="text" className="form-control" id="correo" name="correo" required />
                     <label>Pregunta de seguridad</label>
                     <select>
                         <option value="0">Nombre de tu primer mascota</option>
-                        <option value="1">Ultimo lugar que visitaste</option>
+                        <option value="1">Último lugar que visitaste</option>
                         <option value="2">¿Comó se llama tu mejor amigo?</option>
                     </select>
                     <label>Tu respuesta</label>
@@ -35,7 +35,7 @@ export default class CambiarContraseña extends Component {
                     <label>Nueva contraseña</label>
                     <input type="password" className="form-control" id="nueva" name="nueva" required /><br/><br/>
                     </div>
-                    <a className='btn'>Cambiar</a> <a className='btn btn-orange' href='/login'>Volver</a>
+                    <a className='btn'>Cambiar contraseña</a> <a className='btn btn-orange' href='/login'>Volver</a>
                 </div>
                 <div className='col-md-2'></div>
             </div>

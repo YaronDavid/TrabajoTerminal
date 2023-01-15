@@ -9,7 +9,7 @@ export default class Metodo extends Component {
       <div className='body'>
         <div className='container'>
         <h2><b><font face="Comic Sans MS">Resolución de un sistema de ecuaciones de 2x2 con el método gráfico</font></b></h2>
-                        <h5>Las ecuaciones lineales de 2 incognitas representan una recta, por lo que un sistema
+                        <h5>Las ecuaciones lineales de 2 incógnitas representan una recta, por lo que un sistema
                             de 2 ecuaciones es la representación de 2 rectas diferentes, para llegar al resultado
                             de las ecuaciones es necesario encontrar el punto de intersección de ambas rectas como
                             se muestra a continuación:

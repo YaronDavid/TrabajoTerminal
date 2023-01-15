@@ -51,7 +51,7 @@ export default class Grupo extends Component {
                   <h1 className="card-title"><center><b><font face="Comic Sans MS">EJERCICIOS</font></b></center></h1>
                   <img className="card-img-top" src={eje} /><br></br>
                   <p></p><br></br>
-                  <p className="card-text">En este apartado puedes consultar la lista de todos los ejercicios que tienes asignados.</p><br></br>
+                  <p className="card-text">En este apartado puedes consultar la lista de todos los ejercicios que tienes asignados por parte de tu profesor.</p><br></br>
 
                   <a href="/exercises">Ver mis ejercicios</a>
                   <br></br>
@@ -67,7 +67,7 @@ export default class Grupo extends Component {
                   <img className="card-img-top" src={video} /><br></br>
                   <p></p><br></br>
                   <p className="card-text">En este apartado puedes consultar el material audiovisual que tu profesor ha compartido con el grupo.</p><br></br>
-                  <a href="#">Ver material audiovisual</a>
+                  <a href="/videos">Ver material audiovisual</a>
                 </div>
               </div>
             </div>
