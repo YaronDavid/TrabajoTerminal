@@ -20,7 +20,7 @@ export default function Login() {
                 alert("Correo o contraseña incorrectos");
             }else{
                 sessionStorage.setItem('id',res.data.id_user);
-                console.log(res.data.id_user);
+                alert("bienvenido");
                 window.location.href='/myGroups'
             }
         });
@@ -52,7 +52,7 @@ export default function Login() {
                             <div className="col-sm-8">
                                 <div className="form-group">
                                     <label className="form-label">Contraseña</label>
-                                    <input type="password" className="form-control" id="contrasena" name="contrasena" placeholder="De 6 a 16 caracteres" onChange={handleChange} required />
+                                    <input type="password" className="form-control" id="contrasena" name="contrasena" placeholder="******" onChange={handleChange} required />
                                 </div>
                             </div>
                             <div className="col-sm-2">
@@ -63,10 +63,10 @@ export default function Login() {
                             </div>
                             <br/><br/>
                             <div className="col-sm-4">
-                                <a className="btn" onClick={handleLogin}>Iniciar Sesión</a>
+                                <input type="submit" className="btn" onClick={handleLogin} value="Iniciar Sesion"/>
                             </div>
                             <div className="col-sm-4">
-                                <a href='/restablecer'>Olvide mi contraseña</a>
+                                <a href='/restablecer'>¿Olvidaste tu contraseña?</a>
                             </div>
                         </div>
                     </form>

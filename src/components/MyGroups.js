@@ -50,7 +50,8 @@ export default class  extends Component {
     SelectedGroup=(nombre_grupo, id_grupo)=>{
         sessionStorage.setItem("grupo",nombre_grupo);
         sessionStorage.setItem("idGrupo",id_grupo);
-      }
+        window.location.href="/grupo";
+    }
 
     componentDidMount(){
         let id = sessionStorage.getItem("id");
@@ -60,7 +61,7 @@ export default class  extends Component {
             this.setState({btn:<a className="btn" onClick={this.open}>Unirse a grupo</a>})
             this.setState({el_sal:"Salir del grupo"})
           }else{
-            this.setState({btn:<a className="btn" href="/crearGrupo">Nuevo grupo</a>})
+            this.setState({btn:<a className="btn" href="/crearGrupo">Crear un nuevo grupo</a>})
             this.setState({el_sal:"Eliminar grupo"})
           }
         });
@@ -91,7 +92,7 @@ export default class  extends Component {
                             <h5 className="card-title">{grupo.nombre_grupo}</h5>
                             <p className="card-text">{grupo.descripcion}</p>
                             <p className='card-text'>{this.state.tipo==1?"Clave de acceso: "+grupo.clave_de_acceso:<></>}</p>
-                            <a className="btn btn-outline-secondary" href="/grupo" onClick={()=>this.SelectedGroup(grupo.nombre_grupo, grupo.id_grupo)}>Entrar al grupo</a><br/><br/>
+                            <button className="btn btn-outline-secondary" onClick={()=>this.SelectedGroup(grupo.nombre_grupo, grupo.id_grupo)}>Entrar al grupo</button><br/><br/>
                             <a className='btn orange' onClick={this.state.tipo==0?()=>this.salir(grupo.id_grupo):()=>this.eliminar(grupo.id_grupo)}>{this.state.el_sal}</a>
                         </div>
                     </div>

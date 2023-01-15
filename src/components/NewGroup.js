@@ -27,7 +27,8 @@ export default function NewGroup() {
     
     const crear = (event) =>{
         GroupServices.getMax().then((res)=>{
-            GroupServices.crear(grupo).then((r)=>{    })
+            alert("Procesando")
+            GroupServices.crear(grupo).then((r)=>{   }).catch()
             let id = sessionStorage.getItem("id");
             let gr = res.data.id_grupo+1;
             GroupServices.unirse(gr,id).then((re)=>{
@@ -44,15 +45,15 @@ export default function NewGroup() {
             <div className='card ab'>
                 <h2 className='orange center'>Nuevo Grupo</h2>
                 <div className='card-body'>
-                <form id="reg">
+                <form id="reg" onSubmit={crear}>
                     <div className='form-group'>
                         <label>Nombre del grupo</label>
-                        <input name='nombre_grupo' className='form-control' onChange={handleChange}/><br/>
-                        <label>Descripcion del grupo</label>
+                        <input name='nombre_grupo' className='form-control' onChange={handleChange} required/><br/>
+                        <label>Descripción del grupo</label>
                         <input  name='descripcion' className='form-control' onChange={handleChange}/><br/>
                         <label>Clave de accesso</label>
                         <input value={grupo.clave_de_acceso} name='clave_de_acceso' className='form-control' disabled/><br/>
-                    <button className='btn' onClick={crear}>Crear</button><a className='btn btn-red' href="/myGroups">Volver</a>
+                    <input type="submit" className='btn' value="Crear grupo"/><a className='btn btn-red' href="/myGroups">Volver</a>
                 </div>
               </form>
             </div>
