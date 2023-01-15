@@ -17,20 +17,14 @@ class UpdateExercise extends Component {
       Y2: '',
       Const2: '',
       AnswerX: '',
-      AnswerY: ''
+      AnswerY: '',
+      Ec1:'',
+      Ec2:'',
     }
 
-    this.changeX1Handler = this.changeX1Handler.bind(this);
-    this.changeSign1Handler = this.changeSign1Handler.bind(this);
-    this.changeY1Handler = this.changeY1Handler.bind(this);
-    this.changeConst1Handler = this.changeConst1Handler.bind(this);
-    this.changeX2Handler = this.changeX2Handler.bind(this);
-    this.changeSign2Handler = this.changeSign2Handler.bind(this);
-    this.changeY2Handler = this.changeY2Handler.bind(this);
-    this.changeConst2Handler = this.changeConst2Handler.bind(this);
-    this.changeAnswerXHandler = this.changeAnswerXHandler.bind(this);
-    this.changeAnswerYHandler = this.changeAnswerYHandler.bind(this);
-
+    
+    this.changeEc1Handler = this.changeEc1Handler.bind(this);
+    this.changeEc2Handler = this.changeEc2Handler.bind(this);
     this.updateExercise = this.updateExercise.bind(this);
 
   }
@@ -47,124 +41,176 @@ class UpdateExercise extends Component {
         Y2: exercise.y2,
         Const2: exercise.const2,
         AnswerX: exercise.answerX,
-        AnswerY: exercise.answerY})
+        AnswerY: exercise.answerY,
+        Ec1: exercise.x1+"x"+exercise.sign1+exercise.y1+"y="+exercise.const1,
+        Ec2: exercise.x2+"x"+exercise.sign2+exercise.y2+"y="+exercise.const2
+      })
     })
   }
 
   updateExercise = (e) => {
-    e.preventDefault();
-    let exercise = {
-      x1: this.state.X1, sign1: this.state.Sign1, y1: this.state.Y1, const1: this.state.Const1,
-      x2: this.state.X2, sign2: this.state.Sign2, y2: this.state.Y2, const2: this.state.Const2,
-      answerX: this.state.AnswerX, answerY: this.state.AnswerY
+
+    let x1='';
+        let bX1=false;
+        let y1='';
+        let bY1=false;
+        let By1e=false
+        let const1='';
+        let sign1='';
+        let bSign1=false;
+        let x2='';
+        let bX2=false;
+        let y2='';
+        let bY2=false;
+        let By2e=false
+        let const2='';
+        let sign2='';
+        let bSign2=false;
+      for(let i=0; i<this.state.Ec1.length; i++){
+        let actual = this.state.Ec1.charAt(i);
+        if(i==0&&(actual=="x"||actual=="X")){
+          x1=1;
+        }
+        if(actual=="("||actual==")"||actual==' '||actual=="["||actual=="]"){}
+        else{
+          if(actual!='x'&&actual!="X"&&bX1==false){
+            x1 = x1+actual;
+          }else{
+            bX1=true;
+            if(bSign1==false){
+              if(actual=="+"||actual=="-"){
+                sign1=actual;
+                bSign1=true;
+              }
+            }else{
+              if(actual!="y"&&actual!="Y"&&bY1==false){
+                y1 = y1+actual
+                By1e=true;
+              }else{
+                bY1=true;
+                if(By1e==false){
+                  y1=1;
+                }
+                if(actual!="="&&actual!="y"&&actual!="Y"){
+                  const1 = const1+actual;
+                }
+              }
+            }
+          }
+        }
+      }
+      
+      for(let i=0; i<this.state.Ec2.length; i++){
+        let actual = this.state.Ec2.charAt(i);
+        if(i==0&&(actual=="x"||actual=="X")){
+          x2=1;
+        }
+        if(actual=="("||actual==")"||actual==' '||actual=="["||actual=="]"){}
+        else{
+          if(actual!='x'&&actual!="X"&&bX2==false){
+            x2 = x2+actual;
+          }else{
+            bX2=true;
+            if(bSign2==false){
+              if(actual=="+"||actual=="-"){
+                sign2=actual;
+                bSign2=true;
+              }
+            }else{
+              if(actual!="y"&&actual!="Y"&&bY2==false){
+                y2 = y2+actual
+                By2e=true;
+              }else{
+                bY2=true;
+                if(By2e==false){
+                  y2=1;
+                }
+                if(actual!="="&&actual!="y"&&actual!="Y"){
+                  const2 = const2+actual;
+                }
+              }
+            }
+          }
+        }
+      }
+
+      if(bSign1&&bSign2){
+      if(bX1&&bY1&&bX2&&bY2){
+        
+      let auxY1 = sign1+y1;
+      let auxY2 = sign2+y2;
+
+      let AX = ((auxY1*const2)-(auxY2*const1))/((x2*auxY1)-(x1*auxY2));
+      let AY = ((const1)-(x1*AX))/auxY1;
+      if(AX<=10&&AY<=10){
+      let exercise = {x1:x1, sign1: sign1, y1: y1, const1: const1,
+        x2: x2, sign2: sign2, y2: y2, const2: const2,
+        answerX: AX, answerY: AY}
+      
+      console.log('ejercicio => ' + JSON.stringify(exercise));
+
+      if(x1%1==0&&y1%1==0&&x2%1==0&&y2%1==0&&AX%1==0&&AY%1==0){
+        ExcercisesServices.updateExercise(exercise, this.state.id_ejercicio)
+        window.location.href = '/exercises';
+          alert("Se actualizo correctamente")
+       
+      }else{
+        alert("Las respuestas y los coeficientes deben ser enteros");
+      }
+      }else{
+        alert("Los resultados deben estar entre 10 y -10");
+      }
+    }
+    else{
+      alert("Las ecuaciones deben estar en la forma aX+bY=c");
+    }
+    }else{
+      alert("Agrege signo + o - al coeficiente Y")
     }
 
-    console.log('ejercicio => ' + JSON.stringify(exercise));
 
-    ExcercisesServices.updateExercise(exercise, this.state.id_ejercicio).then(res => {
-      window.location.href = '/exercises'
-    });
+
+
+
+    
   }
 
-  changeX1Handler = (event) => {
-    this.setState({ X1: event.target.value });
+  changeEc1Handler = (event) =>{
+    this.setState({Ec1: event.target.value});
   }
-  changeSign1Handler = (event) => {
-    this.setState({ Sign1: event.target.value });
-  }
-  changeY1Handler = (event) => {
-    this.setState({ Y1: event.target.value });
-  }
-  changeConst1Handler = (event) => {
-    this.setState({ Const1: event.target.value });
-  }
-  changeX2Handler = (event) => {
-    this.setState({ X2: event.target.value });
-  }
-  changeSign2Handler = (event) => {
-    this.setState({ Sign2: event.target.value });
-  }
-  changeY2Handler = (event) => {
-    this.setState({ Y2: event.target.value });
-  }
-  changeConst2Handler = (event) => {
-    this.setState({ Const2: event.target.value });
-  }
-  changeAnswerXHandler = (event) => {
-    this.setState({ AnswerX: event.target.value });
-  }
-  changeAnswerYHandler = (event) => {
-    this.setState({ AnswerY: event.target.value });
+  changeEc2Handler = (event) =>{
+    this.setState({Ec2: event.target.value});
   }
 
   render() {
     return (
-      <div className='body'>
-        <br />
-        <div className='container'>
-          <div className='row'>
-            <div className='card col-md-6 offset-md-3 offset-md-3'>
-              <h3 className='text-center'>Actualizar ejercicio</h3>
-              <div className='card-body'>
-                <form>
-                  <div className='form-group'>
-                    <label>Literal X1</label>
-                    <input placeholder='Literal de X en la primer ecuación' name='X1' className='form-control'
-                      value={this.state.X1} onChange={this.changeX1Handler} />
-                  </div>
-                  <div className='form-group'>
-                    <label>Signo 1</label>
-                    <input placeholder='Signo + o -' name='Sign1' className='form-control'
-                      value={this.state.Sign1} onChange={this.changeSign1Handler} />
-                  </div>
-                  <div className='form-group'>
-                    <label>Literal Y1</label>
-                    <input placeholder='Literal de Y en la primer ecuación' name='Y1' className='form-control'
-                      value={this.state.Y1} onChange={this.changeY1Handler} />
-                  </div>
-                  <div className='form-group'>
-                    <label>Constante 1</label>
-                    <input placeholder='Valor constante en la primer ecuación' name='Const1' className='form-control'
-                      value={this.state.Const1} onChange={this.changeConst1Handler} />
-                  </div>
-                  <div className='form-group'>
-                    <label>Literal X2</label>
-                    <input placeholder='Literal de X en la segunda ecuación' name='X2' className='form-control'
-                      value={this.state.X2} onChange={this.changeX2Handler} />
-                  </div>
-                  <div className='form-group'>
-                    <label>Signo 2</label>
-                    <input placeholder='Signo + o -' name='Sign2' className='form-control'
-                      value={this.state.Sign2} onChange={this.changeSign2Handler} />
-                  </div>
-                  <div className='form-group'>
-                    <label>Literal Y2</label>
-                    <input placeholder='Literal de Y en la segunda ecuación' name='Y2' className='form-control'
-                      value={this.state.Y2} onChange={this.changeY2Handler} />
-                  </div>
-                  <div className='form-group'>
-                    <label>Constante 2</label>
-                    <input placeholder='Valor constante en la segunda ecuación' name='Const2' className='form-control'
-                      value={this.state.Const2} onChange={this.changeConst2Handler} />
-                  </div>
-                  <div className='form-group'>
-                    <label>Respuesta X</label>
-                    <input placeholder='Valor de X' name='AnswerX' className='form-control'
-                      value={this.state.AnswerX} onChange={this.changeAnswerXHandler} />
-                  </div>
-                  <div className='form-group'>
-                    <label>Respuesta Y</label>
-                    <input placeholder='Valor de Y' name='AnswerY' className='form-control'
-                      value={this.state.AnswerY} onChange={this.changeAnswerYHandler} />
-                  </div>
-
-                  <button className='btn btn-success' onClick={this.updateExercise}>Guardar</button>
-                  <a className='btn btn-danger' href='/exercises' style={{ marginLeft: "10px" }}>Cancelar</a>
-                </form>
-              </div>
+      <div className='body' id="createE">
+      <br/>
+      <div className='container'>
+        <div className='row'>
+          <div className='card col-md-6 offset-md-3 offset-md-3'>
+            <h3 className='text-center'>Actualizar ejercicio</h3>
+            <div className='card-body'>
+              <p className='adv'>Las respuestas de los ejercicios deben estar contenidas entre los puntos (-10 y 10).</p>
+              <p className='adv'>Las ecuaciones deben ser de la forma ax+by=c</p>
+              <form onSubmit={this.updateExercise}>
+                <div className='form-group'>
+                  <label>Ecuación 1</label>
+                  <input placeholder='Primer ecucación' name='Ec1' className='form-control' value={this.state.Ec1}
+                  onChange={this.changeEc1Handler}/>
+                </div>
+                <div className='form-group'>
+                  <label>Ecuación 2</label>
+                  <input placeholder='Segunda ecuación' name='Ec2' className='form-control' value={this.state.Ec2}
+                  onChange={this.changeEc2Handler}/>
+                </div><br/>
+                <input type="submit" className='btn btn-success' value="Guardar"/>
+                <a className='btn btn-orange' href='/exercises' style={{marginLeft: "10px"}}>Cancelar</a>
+              </form>
             </div>
           </div>
         </div>
+      </div>
       </div>
     )
   }

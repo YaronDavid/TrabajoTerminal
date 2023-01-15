@@ -29,10 +29,13 @@ class ListExercises extends Component {
     this.setState({tipo: sessionStorage.getItem("tipo")})
   }
 
-  deleteExercise(id){
-    ExcercisesServices.deleteExercise(id).then(res=>{
-      this.setState({ejercicios: this.state.ejercicios.filter(ejercicio => ejercicio.id !== id)})
-      window.location.href = window.location.href;
+  deleteExercise = (id) =>{
+    let id_grupo = sessionStorage.getItem("idGrupo")
+    ExcercisesServices.deleteExerciseToGroup(id, id_grupo).then((r)=>{
+      ExcercisesServices.deleteExercise(id).then(res=>{
+        this.setState({ejercicios: this.state.ejercicios.filter(ejercicio => ejercicio.id !== id)})
+        window.location.href = window.location.href;
+      })
     })
   }
 

@@ -182,14 +182,18 @@ export default class SolveExercise extends Component {
       if(l1&&l2){
         let AX = (this.state.puntoDY2-this.state.puntoDY1+(this.state.puntoDX1*m1)-(this.state.puntoDX2*m2))/(m1-m2);
         let AY = this.state.puntoDY1-(this.state.puntoDX1*m1)+(m1*AX);
-        if(X1Max>=AX&&X2Max>=AX&&X1Min<=AX&&X2Min<AX&&Y1Max>=AY&&Y2Max>=AY&&Y1Min<=AY&&Y2Min<AX){
+        if(X1Max>=AX && X2Max>=AX && X1Min<=AX && X2Min<=AX && Y1Max>=AY && Y2Max>=AY && Y1Min<=AY && Y2Min<=AY){
           if(AX==this.state.AnswerX&&this.state.AnswerY==AY){
-            this.setState({err:<p className='bg-success'>Felicidades, la respuesta ({AX},{AY}) es correcta</p>})
+            this.setState({err:<p className='bg-success'>¡Felicidades, la respuesta ({AX},{AY}) es correcta!</p>})
           }else{
-            this.setState({err:<p className='bg-warning'>Respuesta incorrecta, vuelve a intentarlo con otros valores</p>})
+            this.setState({err:<p className='bg-warning'>El punto ({AX},{AY}) es incorrecto, vuelve a intentarlo con otros valores.</p>})
           }
       }else{
-        this.setState({err:<p className='bg-warning'>Las lineas no se tocan, no es posible saber la respuesta</p>})
+        if(m1==m2){
+          this.setState({err:<p className='bg-warning'>Las lineas son paralelas o se sobreponen</p>})
+        }else{
+        this.setState({err:<p className='bg-warning'>Las líneas no se tocan, no es posible saber la respuesta.</p>})
+        }
       }
     }
       
@@ -446,8 +450,8 @@ export default class SolveExercise extends Component {
           </div>
         </div>
         <div className='text'>
-          Nota: limpia la gráfica cuando quieras volver a dibujar una línea de la
-          misma ecuación
+          Nota: Limpia la gráfica cuando quieras volver a dibujar una línea de la
+          misma ecuación.
         </div>
           
           </div>
